@@ -1,5 +1,6 @@
+'use client'
 import AdminLayout from "@/components/AdminLayout";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 function AdminPage() {

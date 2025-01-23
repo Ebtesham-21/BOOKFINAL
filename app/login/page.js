@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
 
@@ -16,9 +16,9 @@ const LoginPage = () => {
             const response = await axios.post('/api/auth/login', {username, password});
                 localStorage.setItem('token', response.data.token)
                 if(response.data.isAdmin){
-                    router.push('/admin')
+                    router.push('/admin');
                 } else {
-                    router.push('/')
+                    router.push('/');
                 }
 
         } catch (error){
@@ -40,6 +40,17 @@ const LoginPage = () => {
                         id="username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
+                        className="w-full p-2 border rounded"
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password" className="block mb-1 font-medium">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         className="w-full p-2 border rounded"
                         required
                     />
