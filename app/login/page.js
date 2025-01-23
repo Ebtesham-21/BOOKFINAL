@@ -11,19 +11,20 @@ const LoginPage = () => {
     const router = useRouter();
 
     const handleLogin = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('/api/auth/login', {username, password});
-                localStorage.setItem('token', response.data.token)
-                if(response.data.isAdmin){
-                    router.push('/admin');
-                } else {
-                    router.push('/');
-                }
-
-        } catch (error){
-            console.log(error);
-        }
+    e.preventDefault();
+    try {
+      console.log("sending login request", {username, password})
+        const response = await axios.post('/api/auth/login', { username, password });
+        localStorage.setItem('token', response.data.token);
+         console.log("Login successful", response);
+            if(response.data.isAdmin){
+              router.push('/admin');
+            } else {
+              router.push('/');
+            }
+    } catch (error) {
+      console.error("Login Failed on frontend", error);
+    }
     };
 
 
